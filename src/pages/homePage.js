@@ -1,4 +1,7 @@
 import { TimeWithWeather } from "../components/InfoHeader/index.js";
+import { QuickNav } from "../components/QuickNav/index.js";
+import { WeatherSection } from "../components/WeatherSection/index.js";
+import { YoutubeLink } from "../components/YoutubeLink/index.js";
 import { Component, createComponent } from "../core/index.js";
 
 class HomePage extends Component {
@@ -30,8 +33,16 @@ class HomePage extends Component {
     appMenuContent.classList.add("app-menu-content");
 
     const appMenuHeader = createComponent(TimeWithWeather);
+    const quickNavComponent = createComponent(QuickNav);
+    const youtubeLink = createComponent(YoutubeLink);
+    const weatherSection = createComponent(WeatherSection);
 
-    appMenuContent.append(appMenuHeader);
+    appMenuContent.append(
+      appMenuHeader,
+      quickNavComponent,
+      youtubeLink,
+      weatherSection
+    );
 
     appMenuContentWrapper.append(appMenuContent);
     appMenu.append(appMenuContentWrapper);

@@ -13,14 +13,16 @@ class TimeTemperature extends Component {
   }
 
   getTime() {
-    setInterval(() => {
+    const updateTime = () => {
       const update = new Date();
 
       if (update.getMinutes() !== this.state.date.getMinutes()) {
         console.log(this.state.date.getMinutes(), update.getMinutes());
         this.setState({ date: update });
       }
-    }, 100);
+      requestAnimationFrame(updateTime);
+    };
+    requestAnimationFrame(updateTime);
   }
 
   render() {
@@ -37,6 +39,15 @@ class TimeTemperature extends Component {
           }</span>
           <span class="weather-temperature-unit">°F</span>
         </span>
+      </div>
+      <div class="reminder">
+          <div class="reminder-icon">
+            <i class="fa-regular fa-bell"></i>
+          </div>
+          <span class="reminder-text">
+            Extra cool people meeting
+            <span class="reminder-time">10AM</span>
+          </span>
       </div>
     </div>`;
 

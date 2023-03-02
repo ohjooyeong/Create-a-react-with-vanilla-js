@@ -1,1 +1,1 @@
-export { default as TimeWithWeather } from "./TimeTemperature.js";
+export { default as TimeWithWeather } from "./timeTemperature.js";
