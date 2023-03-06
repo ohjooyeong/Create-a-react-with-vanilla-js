@@ -17,7 +17,6 @@ class TimeTemperature extends Component {
       const update = new Date();
 
       if (update.getMinutes() !== this.state.date.getMinutes()) {
-        console.log(this.state.date.getMinutes(), update.getMinutes());
         this.setState({ date: update });
       }
       requestAnimationFrame(updateTime);

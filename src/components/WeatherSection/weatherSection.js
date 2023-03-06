@@ -1,5 +1,6 @@
-import { Component } from "../../core/index.js";
+import { Component, createComponent } from "../../core/index.js";
 import { Number } from "../../utils/index.js";
+import { ScrollableComponent } from "../ScrollableComponent/index.js";
 import { DayCard } from "./index.js";
 
 class WeatherSection extends Component {
@@ -7,31 +8,28 @@ class WeatherSection extends Component {
     super(props);
 
     this.state = {
-      week: [],
+      week: [
+        { temperature: Number.rand(55, 75), day: "MON" },
+        { temperature: Number.rand(55, 75), day: "TUES" },
+        { temperature: Number.rand(55, 75), day: "WED" },
+        { temperature: Number.rand(55, 75), day: "THURS" },
+        { temperature: Number.rand(55, 75), day: "FRI" },
+        { temperature: Number.rand(55, 75), day: "SAT" },
+        { temperature: Number.rand(55, 75), day: "SUN" },
+      ],
     };
-    this.getWeek();
+    // this.getWeek();
   }
 
-  getWeek() {
-    // this.setState([
-    //   { temperature: Number.rand(55, 75), day: "MON" },
-    //   { temperature: Number.rand(55, 75), day: "TUES" },
-    //   { temperature: Number.rand(55, 75), day: "WED" },
-    //   { temperature: Number.rand(55, 75), day: "THURS" },
-    //   { temperature: Number.rand(55, 75), day: "FRI" },
-    //   { temperature: Number.rand(55, 75), day: "SAT" },
-    //   { temperature: Number.rand(55, 75), day: "SUN" },
-    // ]);
-  }
+  getWeek() {}
 
   render() {
-    // const { week } = this.state;
+    const { week } = this.state;
     const weatherWrapper = document.createElement("div");
     weatherWrapper.classList.add("weather-section");
     weatherWrapper.classList.add("menu-section");
 
-    const content = document.createElement("div");
-    content.classList.add("scrollable-component");
+    const content = createComponent(ScrollableComponent);
     content.classList.add("menu-section-content");
 
     const title = document.createElement("div");
@@ -42,10 +40,10 @@ class WeatherSection extends Component {
 
     weatherWrapper.append(title);
 
-    // week.forEach((day) => {
-    //   const dayCardItem = createComponent(DayCard, day);
-    //   content.append(dayCardItem);
-    // });
+    week.forEach((day) => {
+      const dayCardItem = createComponent(DayCard, day);
+      content.append(dayCardItem);
+    });
 
     weatherWrapper.append(content);
 
